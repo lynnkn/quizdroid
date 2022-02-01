@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizDroid">
         <activity
+            android:name=".OverviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PhysicsOverview"
+            android:exported="false" />
+        <activity
+            android:name=".PokemonOverview"
+            android:exported="false" />
+        <activity
+            android:name=".MathOverview"
+            android:exported="false" />
+        <activity
+            android:name=".MarvelOverview"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

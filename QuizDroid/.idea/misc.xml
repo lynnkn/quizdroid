@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Lynn/Documents/INFO448/quizdroid/QuizDroid/app/src/main/res/layout/activity_main.xml" value="0.2907608695652174" />
+        <entry key="..\:/Users/Lynn/Documents/INFO448/quizdroid/QuizDroid/app/src/main/res/layout/activity_overview.xml" value="0.3625" />
+        <entry key="..\:/Users/Lynn/Documents/INFO448/quizdroid/QuizDroid/app/src/main/res/layout/activity_physics_overview.xml" value="0.3625" />
+        <entry key="..\:/Users/Lynn/Documents/INFO448/quizdroid/QuizDroid/app/src/main/res/layout/row.xml" value="0.3625" />
       </map>
     </option>
   </component>
