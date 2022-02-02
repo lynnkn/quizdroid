@@ -6,16 +6,21 @@ class Data {
         "Math", "Physics", "Marvel Super Heroes", "Pokemon"
     )
 
+    // topic images
+    private var topicImages: Array<Int> = arrayOf(
+        R.drawable.math_img, R.drawable.physics_img, R.drawable.marvel_img, R.drawable.pokemon_img
+    )
+
     // topic descriptions
     private var topicOverviews: Array<String> = arrayOf(
         "This topic will test you on some basic arithmetical math problem. Don't worry about "
-            + "seeing any calculus here! There will be a total of 3 questions in this topic.",
-        "This topic will be some physics trivia and facts. There won't be any formulas you will "
-            + "need to solve in these questions. There will be a total of 3 questions in this topic.",
+            + "seeing any calculus here! \n \n There will be a total of 3 questions in this topic.",
+        "This topic will be some physics related trivia and facts. You won't need any mathematical "
+            + "formulas to solve these questions. \n \n There will be a total of 3 questions in this topic.",
         "This topic will test you on your knowledge of Marvel Super Heroes and the Marvel Cinematic "
-            + "Universe. There will be a total of 3 questions in this topic.",
-        "This topic test your knowledge of Pokemon trivia. Do you have what it takes to become the next "
-            + "Pokemon master? There will be a total of 3 questions in this topic."
+            + "Universe. \n \n There will be a total of 3 questions in this topic.",
+        "This topic will test your knowledge of Pokemon trivia. Do you have what it takes to become the next "
+            + "Pokemon master? \n \n There will be a total of 3 questions in this topic."
     )
 
     // topic questions
@@ -47,8 +52,16 @@ class Data {
     )
 
     // getter methods
-    fun getTopicLabels() : Array<String> {
+    fun getLabels() : Array<String> {
         return topicLabels
+    }
+
+    fun getImage(index: Int) : Int {
+        return topicImages[index]
+    }
+
+    fun getOverview(index: Int) : String {
+        return topicOverviews[index]
     }
 
     fun getQuestions(index: Int): Array<Array<String>> {
