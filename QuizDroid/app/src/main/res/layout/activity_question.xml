@@ -26,55 +26,64 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/topicImg"
+                android:id="@+id/qImg"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="12dp"
-                android:src="@drawable/pokemon_img" />
+                android:src="@drawable/default_img" />
 
             <TextView
                 android:id="@+id/qText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
-                android:text="sjfkl dfdsf sdfsdf sfsdf dsf sdfsdfsd  dfsdf sdfdsf djflsdjflsdjf dslfjsdlkdfds fklsdfj sdlfjsd fjsdfs dfjsdf sdjklfsdjfsdljk fsd ?"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:text="Question here"/>
 
             <RadioGroup
+                android:id="@+id/choices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <RadioButton
                     android:id="@+id/choice1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choice 1"
                     android:textSize="16dp" />
 
                 <RadioButton
                     android:id="@+id/choice2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choice 2"
                     android:textSize="16dp" />
 
                 <RadioButton
                     android:id="@+id/choice3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choice 3"
                     android:textSize="16dp" />
 
                 <RadioButton
                     android:id="@+id/choice4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choice 4"
                     android:textSize="16dp" />
 
             </RadioGroup>
+
+            <Button
+                android:id="@+id/submitBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:text="Submit" />
         </LinearLayout>
     </ScrollView>
 

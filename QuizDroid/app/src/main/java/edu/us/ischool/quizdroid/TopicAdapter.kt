@@ -58,8 +58,6 @@ class TopicAdapter(val activity: Activity) : RecyclerView.Adapter<RowHolder>() {
             intent.putExtra("EXTRA_QUESTIONS", holder.questions)
             intent.putExtra("EXTRA_IMAGE", holder.image)
 
-            Log.i("MainActivity", intent.extras.toString())
-
             activity.startActivity(intent)
         }
     }
