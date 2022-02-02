@@ -48,22 +48,23 @@ class QuestionActivity : AppCompatActivity() {
         val answer = question[5]
 
         submitBtn.setOnClickListener{
-            val userChoice: RadioButton = findViewById(choices.checkedRadioButtonId)
-            val newScore =
-                score?.let { num -> calculateScore(num, userChoice.text.toString(), answer) }
+            if (choices.checkedRadioButtonId != -1) {
+                val userChoice: RadioButton = findViewById(choices.checkedRadioButtonId)
+                val newScore =
+                    score?.let { num -> calculateScore(num, userChoice.text.toString(), answer) }
 
-            val intent = Intent(this, AnswerActivity::class.java)
-            // adding extras to intent
-            intent.putExtra("EXTRA_NUM_QUESTIONS", allQuestions.size)
-            intent.putExtra("EXTRA_QUESTIONS", allQuestions)
-            intent.putExtra("EXTRA_CURRENT", current)
-            intent.putExtra("EXTRA_IMAGE", image)
-            intent.putExtra("EXTRA_SCORE", newScore)
-            intent.putExtra("EXTRA_CHOICE", userChoice.text)
-            intent.putExtra("EXTRA_ANSWER", answer)
+                val intent = Intent(this, AnswerActivity::class.java)
+                // adding extras to intent
+                intent.putExtra("EXTRA_NUM_QUESTIONS", allQuestions.size)
+                intent.putExtra("EXTRA_QUESTIONS", allQuestions)
+                intent.putExtra("EXTRA_CURRENT", current)
+                intent.putExtra("EXTRA_IMAGE", image)
+                intent.putExtra("EXTRA_SCORE", newScore)
+                intent.putExtra("EXTRA_CHOICE", userChoice.text)
+                intent.putExtra("EXTRA_ANSWER", answer)
 
-            Log.i("QuestionActivity", intent.extras.toString())
-            startActivity(intent)
+                startActivity(intent)
+            }
         }
     }
 

@@ -38,7 +38,8 @@ class OverviewActivity : AppCompatActivity() {
             intent.putExtra("EXTRA_IMAGE", image)
             intent.putExtra("EXTRA_SCORE", 0)
 
-           startActivity(intent)
+            startActivity(intent)
+            finish()
         }
     }
 }

@@ -64,6 +64,7 @@ class AnswerActivity : AppCompatActivity() {
                 intent.putExtra("EXTRA_SCORE", score)
 
                 startActivity(intent)
+                finish()
             }
         }
 
