@@ -1,12 +1,16 @@
 package edu.us.ischool.quizdroid
 
+import java.io.Serializable
+
 interface TopicRepository {
-    fun getTopics() : List<Topic>
+    fun getAllTopics() : List<Topic>
+    fun getTopic(index: Int) : Topic
     fun addTopic(topic: Topic)
+    fun updateTopic(index: Int, newTopic: Topic)
+    fun removeTopic(index: Int)
 }
 
-data class Quiz(val question: String, val choice1: String, val choice2: String, val choice3: String,
-                val choice4: String, val answer: Int)
+data class Quiz(val question: String, val choices: List<String>, val answer: Int) : Serializable
 
-data class Topic(val title: String, var short: String, var long: String,
-                 var questionList: List<Quiz>)
+data class Topic(val title: String, var desc: String, var img: Int,
+                 var questionList: List<Quiz>) : Serializable

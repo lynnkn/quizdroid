@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import java.io.Serializable
 
 class QuestionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +14,11 @@ class QuestionActivity : AppCompatActivity() {
 
         // getting intent from last activity
         val pIntent = this.intent
+
+        // getting data
+        val data = QuizApp.quizData
+        val index = pIntent.extras?.getInt("EXTRA_INDEX")
+        val topic = index?.let { data.getTopic(it) }
 
         // getting views from layout
         val qHeader: TextView = findViewById(R.id.qHeader)
@@ -30,38 +36,28 @@ class QuestionActivity : AppCompatActivity() {
         if (current != null) {
             qHeader.text = "Question ${current + 1}"
         }
-        val image = pIntent.extras?.getInt("EXTRA_IMAGE")
-        if (image != null) {
-            qImg.setImageResource(image)
-        }
         val score = pIntent.extras?.getInt("EXTRA_SCORE")
+        qImg.setImageResource(topic!!.img)
 
-        val allQuestions: Array<Array<String>> = pIntent.extras?.getSerializable("EXTRA_QUESTIONS") as Array<Array<String>>
-        val question: Array<String> = allQuestions[current!!]
-        qText.text = question[0]
-        choice1.text = question[1]
-        choice2.text = question[2]
-        choice3.text = question[3]
-        choice4.text = question[4]
-
-        // getting additional data to pass to intent
-        val answer = question[5]
+        val question: Quiz = topic!!.questionList[current!!]
+        qText.text = question.question
+        choice1.text = question.choices[0]
+        choice2.text = question.choices[1]
+        choice3.text = question.choices[2]
+        choice4.text = question.choices[3]
 
         submitBtn.setOnClickListener{
             if (choices.checkedRadioButtonId != -1) {
                 val userChoice: RadioButton = findViewById(choices.checkedRadioButtonId)
                 val newScore =
-                    score?.let { num -> calculateScore(num, userChoice.text.toString(), answer) }
+                    score?.let { num -> calculateScore(num, userChoice.text.toString(), question.choices[question.answer]) }
 
                 val intent = Intent(this, AnswerActivity::class.java)
                 // adding extras to intent
-                intent.putExtra("EXTRA_NUM_QUESTIONS", allQuestions.size)
-                intent.putExtra("EXTRA_QUESTIONS", allQuestions)
                 intent.putExtra("EXTRA_CURRENT", current)
-                intent.putExtra("EXTRA_IMAGE", image)
+                intent.putExtra("EXTRA_INDEX", index)
                 intent.putExtra("EXTRA_SCORE", newScore)
                 intent.putExtra("EXTRA_CHOICE", userChoice.text)
-                intent.putExtra("EXTRA_ANSWER", answer)
 
                 startActivity(intent)
             }

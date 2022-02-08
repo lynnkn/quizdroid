@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import java.io.Serializable
 
 class AnswerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +15,11 @@ class AnswerActivity : AppCompatActivity() {
 
         // getting intent from last activity
         val pIntent = this.intent
+
+        // getting data
+        val data = QuizApp.quizData
+        val index = pIntent.extras?.getInt("EXTRA_INDEX")
+        val topic = index?.let { data.getTopic(it) }
 
         // getting views from layout
         val aHeader: TextView = findViewById<TextView>(R.id.aHeader)
@@ -29,45 +35,40 @@ class AnswerActivity : AppCompatActivity() {
         if (current != null) {
             aHeader.text = "Question ${current + 1}"
         }
-        val image = pIntent.extras?.getInt("EXTRA_IMAGE")
-        if (image != null) {
-            aImg.setImageResource(image)
-        }
-        val allQuestions: Array<Array<String>> = pIntent.extras?.getSerializable("EXTRA_QUESTIONS") as Array<Array<String>>
-        val question: Array<String> = allQuestions[current!!]
-        aText.text = question[0]
+        aImg.setImageResource(topic!!.img)
+        val question: Quiz = topic!!.questionList[current!!]
+        aText.text = question.question
 
         // setting score logic
         choice.text = "Your Answer: ${pIntent.extras?.getString("EXTRA_CHOICE")}"
-        answer.text = "Correct Answer: ${pIntent.extras?.getString("EXTRA_ANSWER")}"
-        val numQuestions = pIntent.extras?.getInt("EXTRA_NUM_QUESTIONS")
+        answer.text = "Correct Answer: ${question.choices[question.answer]}"
         var score = pIntent.extras?.getInt("EXTRA_SCORE")
-        scoreText.text = "You got ${score} out of ${numQuestions} correct!"
+        scoreText.text = "You got ${score} out of ${topic.questionList.size} correct!"
 
         // button logic
-        if (current + 1 === numQuestions) {
-            nextBtn.text = "FINISH"
-            nextBtn.setOnClickListener {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
-        } else {
-            nextBtn.text = "NEXT"
-            nextBtn.setOnClickListener {
+        if (current != null) {
+            if (current + 1 === topic.questionList.size) {
+                nextBtn.text = "FINISH"
+                nextBtn.setOnClickListener {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            } else {
+                nextBtn.text = "NEXT"
+                nextBtn.setOnClickListener {
 
-                val intent = Intent(this, QuestionActivity::class.java)
+                    val intent = Intent(this, QuestionActivity::class.java)
 
-                // adding extras to intent
-                intent.putExtra("EXTRA_QUESTIONS", allQuestions)
-                intent.putExtra("EXTRA_CURRENT", current + 1)
-                intent.putExtra("EXTRA_IMAGE", image)
-                intent.putExtra("EXTRA_SCORE", score)
+                    // adding extras to intent
+                    intent.putExtra("EXTRA_CURRENT", current + 1)
+                    intent.putExtra("EXTRA_INDEX", index)
+                    intent.putExtra("EXTRA_SCORE", score)
 
-                startActivity(intent)
-                finish()
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
-
     }
 
 }
