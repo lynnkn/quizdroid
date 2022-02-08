@@ -12,5 +12,6 @@ interface TopicRepository {
 
 data class Quiz(val question: String, val choices: List<String>, val answer: Int) : Serializable
 
+// added an extra image field since my app has an image for each topic
 data class Topic(val title: String, var desc: String, var img: Int,
                  var questionList: List<Quiz>) : Serializable
