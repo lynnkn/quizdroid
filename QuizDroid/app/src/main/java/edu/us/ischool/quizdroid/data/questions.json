@@ -1,0 +1,182 @@
+[
+  {   "title":"Mathematics",
+    "desc":"This topic will test you on some basic arithmetical math problems. Don't worry about seeing any calculus here!",
+    "questions":[
+      {
+        "text":"What is 2+2?",
+        "answer":"1",
+        "answers":[
+          "4",
+          "22",
+          "An irrational number",
+          "Nobody knows"
+        ]
+      },
+      {
+        "text":"What does 5 / 0 equal?",
+        "answer":"4",
+        "answers":[
+          "5",
+          "0",
+          "50",
+          "undefined"
+        ]
+      },
+      {
+        "text":"What does 2^5 equal?",
+        "answer":"1",
+        "answers":[
+          "32",
+          "10",
+          "7",
+          "64"
+        ]
+      }
+    ]
+  },
+  {   "title":"Physics",
+    "desc":"This topic will be some physics related trivia and facts. You won't need any mathematical formulas to solve these questions.",
+    "questions":[
+      {
+        "text":"What is fire?",
+        "answer":"1",
+        "answers":[
+          "One of the four classical elements",
+          "A magical reaction given to us by God",
+          "A band that hasn't yet been discovered",
+          "Fire! Fire! Fire! heh-heh"
+        ]
+      },
+      {
+        "text":"What is the acceleration of gravity on earth?",
+        "answer":"2",
+        "answers":[
+          "9.8 m/s",
+          "9.8 m/s^2",
+          "9.6 m/s^2",
+          "8.9 m/s^2"
+        ]
+      },
+      {
+        "text":"How many of Newton's Laws of Motion are there?",
+        "answer":"3",
+        "answers":[
+          "5",
+          "1",
+          "3",
+          "2"
+        ]
+      },
+      {
+        "text":"Does light behave as a particle or a wave?",
+        "answer":"4",
+        "answers":[
+          "Particle",
+          "Wave",
+          "Neither",
+          "Both"
+        ]
+      }
+    ]
+  },
+  {   "title":"Marvel Super Heroes",
+    "desc": "This topic will test your knowledge of Marvel Super Heroes and the Marvel Cinematic Universe. Avengers, Assemble!",
+    "questions":[
+      {
+        "text":"Who is Iron Man?",
+        "answer":"1",
+        "answers":[
+          "Tony Stark",
+          "Obadiah Stane",
+          "A rock hit by Megadeth",
+          "Nobody knows"
+        ]
+      },
+      {
+        "text":"Who founded the X-Men?",
+        "answer":"2",
+        "answers":[
+          "Tony Stark",
+          "Professor X",
+          "The X-Institute",
+          "Erik Lensherr"
+        ]
+      },
+      {
+        "text":"How did Spider-Man get his powers?",
+        "answer":"1",
+        "answers":[
+          "He was bitten by a radioactive spider",
+          "He ate a radioactive spider",
+          "He is a radioactive spider",
+          "He looked at a radioactive spider"
+        ]
+      },
+      {
+        "text":"Which of these characters is not a Marvel superhero?",
+        "answer": "4",
+        "answers":[
+          "Spider-Man",
+          "Scarlet Witch",
+          "Shang Chi",
+          "Starfire"
+        ]
+      },
+      {
+        "text":"Who dies in Avengers: Endgame?",
+        "answer":"1",
+        "answers":[
+          "Iron Man",
+          "Captain America",
+          "Gamora",
+          "Spider-Man"
+        ]
+      },
+      {
+        "text":"Which of these characters is not part of the Avengers?",
+        "answer":"3",
+        "answers":[
+          "Thor",
+          "Black Widow",
+          "Gwen Stacy",
+          "Hulk"
+        ]
+      }
+    ]
+  },
+  {   "title":"Pokemon",
+    "desc": "This topic will test your knowledge of Pokemon trivia. Do you have what it takes to become the next Pokemon master?",
+    "questions":[
+      {
+        "text":"How many original Pokemon are there?",
+        "answer":"1",
+        "answers":[
+          "151",
+          "150",
+          "149",
+          "200"
+        ]
+      },
+      {
+        "text":"Who is Pokemon's mascot?",
+        "answer":"4",
+        "answers":[
+          "Eevee",
+          "Jigglypuff",
+          "Bidoof",
+          "Pikachu"
+        ]
+      },
+      {
+        "text":"Which of these Pokemon is not a fire type?",
+        "answer":"2",
+        "answers":[
+          "Charizard",
+          "Samurott",
+          "Rapidash",
+          "Ninetales"
+        ]
+      }
+    ]
+  }
+]
