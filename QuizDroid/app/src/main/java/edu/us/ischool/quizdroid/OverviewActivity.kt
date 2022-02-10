@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import org.w3c.dom.Text
 import java.io.Serializable
 
@@ -14,6 +15,15 @@ class OverviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_overview)
+
+        // toolbar code
+        val actionBar: Toolbar = findViewById(R.id.action_bar)
+        setSupportActionBar(actionBar)
+        val actionImg: ImageView = findViewById(R.id.preferences_img)
+        actionImg.setOnClickListener {
+            val intent = Intent(this, PreferencesActivity::class.java)
+            startActivity(intent)
+        }
 
         // grabbing data from repo
         val data = QuizApp.quizData
@@ -31,7 +41,7 @@ class OverviewActivity : AppCompatActivity() {
 
         overviewText.text = topic!!.desc
         overviewQuestions.text = "There will be a total of ${topic!!.questionList.size} questions in this topic."
-        overviewImg.setImageResource(topic!!.img)
+        overviewImg.setImageResource(R.drawable.default_img)
 
         startBtn.setOnClickListener{
             val intent = Intent(this, QuestionActivity::class.java)

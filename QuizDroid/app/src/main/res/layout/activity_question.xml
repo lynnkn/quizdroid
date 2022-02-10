@@ -6,86 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".QuestionActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <include layout="@layout/action_bar" />
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/qHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Question #"
-                android:layout_marginBottom="12dp"
-                android:textSize="24dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/qImg"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="24dp"
-                android:src="@drawable/default_img" />
-
-            <TextView
-                android:id="@+id/qText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:textSize="20dp"
-                android:text="Question here"/>
-
-            <RadioGroup
-                android:id="@+id/choices"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <RadioButton
-                    android:id="@+id/choice1"
+                <TextView
+                    android:id="@+id/qHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Question #"
+                    android:layout_marginBottom="12dp"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/qImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="24dp"
+                    android:src="@drawable/default_img" />
+
+                <TextView
+                    android:id="@+id/qText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:textSize="20dp"
+                    android:text="Question here"/>
+
+                <RadioGroup
+                    android:id="@+id/choices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Choice 1"
-                    android:textSize="18dp" />
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/choice2"
-                    android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/choice1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Choice 1"
+                        android:textSize="18dp" />
+
+                    <RadioButton
+                        android:id="@+id/choice2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Choice 2"
+                        android:textSize="18dp" />
+
+                    <RadioButton
+                        android:id="@+id/choice3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Choice 3"
+                        android:textSize="18dp" />
+
+                    <RadioButton
+                        android:id="@+id/choice4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Choice 4"
+                        android:textSize="18dp" />
+
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/submitBtn"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Choice 2"
-                    android:textSize="18dp" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/purple_700"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:text="Submit" />
+            </LinearLayout>
+        </ScrollView>
 
-                <RadioButton
-                    android:id="@+id/choice3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Choice 3"
-                    android:textSize="18dp" />
-
-                <RadioButton
-                    android:id="@+id/choice4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Choice 4"
-                    android:textSize="18dp" />
-
-            </RadioGroup>
-
-            <Button
-                android:id="@+id/submitBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp"
-                android:textSize="20dp"
-                android:text="Submit" />
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

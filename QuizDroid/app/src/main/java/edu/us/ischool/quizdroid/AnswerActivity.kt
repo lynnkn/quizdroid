@@ -6,12 +6,22 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import java.io.Serializable
 
 class AnswerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
+
+        // toolbar code
+        val actionBar: Toolbar = findViewById(R.id.action_bar)
+        setSupportActionBar(actionBar)
+        val actionImg: ImageView = findViewById(R.id.preferences_img)
+        actionImg.setOnClickListener {
+            val intent = Intent(this, PreferencesActivity::class.java)
+            startActivity(intent)
+        }
 
         // getting intent from last activity
         val pIntent = this.intent
@@ -22,20 +32,20 @@ class AnswerActivity : AppCompatActivity() {
         val topic = index?.let { data.getTopic(it) }
 
         // getting views from layout
-        val aHeader: TextView = findViewById<TextView>(R.id.aHeader)
-        val aText: TextView = findViewById<TextView>(R.id.aText)
-        val aImg: ImageView = findViewById<ImageView>(R.id.aImg)
-        val choice: TextView = findViewById<TextView>(R.id.yourAns)
-        val answer: TextView = findViewById<TextView>(R.id.correctAns)
-        val scoreText: TextView = findViewById<TextView>(R.id.score)
-        val nextBtn: Button = findViewById<Button>(R.id.nextBtn)
+        val aHeader: TextView = findViewById(R.id.aHeader)
+        val aText: TextView = findViewById(R.id.aText)
+        val aImg: ImageView = findViewById(R.id.aImg)
+        val choice: TextView = findViewById(R.id.yourAns)
+        val answer: TextView = findViewById(R.id.correctAns)
+        val scoreText: TextView = findViewById(R.id.score)
+        val nextBtn: Button = findViewById(R.id.nextBtn)
 
         // setting view values (with null checks included)
         val current = pIntent.extras?.getInt("EXTRA_CURRENT")
         if (current != null) {
             aHeader.text = "Question ${current + 1}"
         }
-        aImg.setImageResource(topic!!.img)
+        aImg.setImageResource(R.drawable.default_img)
         val question: Quiz = topic!!.questionList[current!!]
         aText.text = question.question
 

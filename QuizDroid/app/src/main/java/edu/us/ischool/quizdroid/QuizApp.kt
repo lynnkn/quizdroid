@@ -9,6 +9,7 @@ class QuizApp : Application() {
         Log.i("QuizApp", "QuizApp is loaded and running!")
     }
 
+
     companion object {
         val quizData = QuizData()
     }

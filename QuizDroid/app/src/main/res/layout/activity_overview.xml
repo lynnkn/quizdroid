@@ -6,51 +6,64 @@
     android:layout_height="wrap_content"
     tools:context=".OverviewActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <include layout="@layout/action_bar" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical" >
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/overviewImg"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/default_img" />
-
-            <TextView
-                android:id="@+id/overviewText"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dp"
-                android:textAlignment="center"
-                android:textSize="24dp" />
+                android:padding="16dp"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/overviewQuestions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="32dp"
-                android:textAlignment="center"
-                android:textSize="24dp" />
+                <ImageView
+                    android:id="@+id/overviewImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/default_img" />
 
-            <Button
-                android:id="@+id/startBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Begin"
-                android:layout_marginBottom="16dp"
-                android:textSize="20dp" />
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/overviewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:textAlignment="center"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/overviewQuestions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="32dp"
+                    android:textAlignment="center"
+                    android:textSize="24dp" />
+
+                <Button
+                    android:id="@+id/startBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Begin"
+                    android:background="@color/purple_700"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,76 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".AnswerActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <include layout="@layout/action_bar" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/aHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Question #"
-                android:layout_marginBottom="12dp"
-                android:textSize="24dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/aImg"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="24dp"
-                android:src="@drawable/pokemon_img" />
-
-            <TextView
-                android:id="@+id/aText"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:text=""
-                android:textSize="20dp" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/yourAns"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="Your answer: "
-                android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/aHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Question #"
+                    android:layout_marginBottom="12dp"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/correctAns"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:text="Correct answer: "
-                android:textSize="18dp" />
+                <ImageView
+                    android:id="@+id/aImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="24dp"
+                    android:src="@drawable/pokemon_img" />
 
-            <TextView
-                android:id="@+id/score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:layout_gravity="center"
-                android:text="You got _ out of _ correct"
-                android:textStyle="bold"
-                android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/aText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:text=""
+                    android:textSize="20dp" />
 
-            <Button
-                android:id="@+id/nextBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                android:text="Next" />
+                <TextView
+                    android:id="@+id/yourAns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Your answer: "
+                    android:textSize="18dp" />
 
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/correctAns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:text="Correct answer: "
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:layout_gravity="center"
+                    android:text="You got _ out of _ correct"
+                    android:textStyle="bold"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/nextBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/purple_700"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:text="Next" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

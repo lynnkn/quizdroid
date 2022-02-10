@@ -5,12 +5,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.appcompat.widget.Toolbar
 import java.io.Serializable
 
 class QuestionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
+
+        // toolbar code
+        val actionBar: Toolbar = findViewById(R.id.action_bar)
+        setSupportActionBar(actionBar)
+        val actionImg: ImageView = findViewById(R.id.preferences_img)
+        actionImg.setOnClickListener {
+            val intent = Intent(this, PreferencesActivity::class.java)
+            startActivity(intent)
+        }
 
         // getting intent from last activity
         val pIntent = this.intent
@@ -37,7 +47,7 @@ class QuestionActivity : AppCompatActivity() {
             qHeader.text = "Question ${current + 1}"
         }
         val score = pIntent.extras?.getInt("EXTRA_SCORE")
-        qImg.setImageResource(topic!!.img)
+        qImg.setImageResource(R.drawable.default_img)
 
         val question: Quiz = topic!!.questionList[current!!]
         qText.text = question.question

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="General">
+
+        <EditTextPreference
+            android:key="data_url"
+            android:title="Input URL for question data"
+            />
+
+        <ListPreference
+            android:key="download_check"
+            android:title="How often to check for downloads"
+            android:defaultValue="5 min"
+            android:entries="@array/pref_download_check"
+            android:entryValues="@array/pref_download_check"
+            android:summary="Select a time" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

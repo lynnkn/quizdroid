@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">QuizDroid</string>
+    <string name="json_url">https://gist.github.com/lynnkn/428fd93053d820e818982a2be76458ec</string>
+
+    <string-array name="pref_download_check">
+        <item>1 min</item>
+        <item>5 min</item>
+        <item>10 min</item>
+        <item>15 min</item>
+        <item>20 min</item>
+        <item>25 min</item>
+    </string-array>
+
 </resources>
