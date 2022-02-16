@@ -21,7 +21,7 @@ class OverviewActivity : AppCompatActivity() {
         setSupportActionBar(actionBar)
         val actionImg: ImageView = findViewById(R.id.preferences_img)
         actionImg.setOnClickListener {
-            val intent = Intent(this, PreferencesActivity::class.java)
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
 
