@@ -1,7 +1,7 @@
 package edu.us.ischool.quizdroid
 
 import android.app.AlarmManager
-import android.app.DownloadManager
+import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.*
 import androidx.appcompat.app.AppCompatActivity
@@ -18,14 +18,13 @@ import android.content.Intent
 import android.os.Handler
 
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.os.Environment
-import androidx.core.content.ContextCompat.*
+import android.os.Looper
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
-import android.content.Context.DOWNLOAD_SERVICE
 import java.lang.Exception
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,43 +38,59 @@ class MainActivity : AppCompatActivity() {
 
         override fun onReceive(context: Context?, intent: Intent?) {
             val url = intent?.extras?.getString("EXTRA_URL")
-            Log.i("IntentListener", "Preparing to download from ${url}")
-            Toast.makeText(context?.getApplicationContext(), "Preparing to download from ${url}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context?.applicationContext, "Attempting to download from ${url}", Toast.LENGTH_SHORT).show()
 
             // attempt to download
             if (url != null) {
+                beginDownload(context, url)
+            }
+        }
+
+        @Throws(FileNotFoundException::class)
+        fun beginDownload(context: Context?, url: String) {
+            // request to download at url
+            val t = thread {
+                val server = URL(url)
+                val client: HttpURLConnection = server.openConnection() as HttpURLConnection
+                client.requestMethod = "GET"
+
                 try {
-                    beginDownload(context, url)
-                } catch (e: Exception) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace()
+                    val reader = BufferedReader(InputStreamReader(client.inputStream))
+                    val file = File(Environment.getExternalStorageDirectory().path, "questions.json")
+                    val writer = file.bufferedWriter(Charsets.UTF_8, DEFAULT_BUFFER_SIZE)
+
+                    var inputLine: String?
+
+                    while (reader.readLine().also { inputLine = it } != null) {
+                        writer.write(inputLine)
+                        writer.newLine()
+                    }
+
+                    reader.close()
+                    writer.close()
+
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(context?.applicationContext, "Download Successful!", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: FileNotFoundException) {
                     Log.i("IntentListener", "Download failed")
+                    Handler(Looper.getMainLooper()).post {
+                        val alert = AlertDialog.Builder(context)
+                            .setTitle("Download Encountered Error")
+                            .setMessage("The download failed. Would you like to retry?")
+                            .setPositiveButton("YES") {dialog, id ->
+                                beginDownload(context, url)
+                            }
+                            .setNegativeButton("NO") {dialog, id ->
+                                // do nothing
+                            }
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+
+                        alert.show()
+                    }
                 }
             }
-
         }
-
-        private fun beginDownload(context: Context?, url: String) {
-            // request to download at url
-            val sdCard: File = Environment.getExternalStorageDirectory()
-            val dm = context?.getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-            Log.i("IntentListener", sdCard.path)
-            val request = DownloadManager.Request(Uri.parse(url))
-                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                .setDestinationInExternalPublicDir(sdCard.path, "questions.json")
-                .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
-
-            // if file already exists, delete it
-            var file =  File("/sdcard/" + Environment.getExternalStorageDirectory().path, "questions.json")
-            if (file.exists()) {
-                file.delete()
-            }
-
-            dm.enqueue(request)
-
-            Log.i("IntentListener", "Download finished")
-        }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,8 +100,8 @@ class MainActivity : AppCompatActivity() {
         // manage preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        var jsonURL = prefs.getString("url", R.string.json_url.toString())
-        var download = prefs.getString("download", "5 min")?.dropLast(4)!!.toInt()
+        val jsonURL = prefs.getString("url", R.string.json_url.toString())
+        val download = prefs.getString("download", "5 min")?.dropLast(4)!!.toInt()
 
         // toolbar code
         val actionBar: Toolbar = findViewById(R.id.action_bar)
@@ -98,15 +113,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         // check if app is not connected to the internet
-        if (!isOnline()) {
-            Toast.makeText(this, "Please make sure your device is connected ot the internet", Toast.LENGTH_LONG).show()
-        } else if (isAirplaneModeOn(this)) {
-            Toast.makeText(this, "Please turn off airplane mode to continue", Toast.LENGTH_SHORT).show()
+        if (isAirplaneModeOn(this)) {
+            Toast.makeText(this, "Please turn off airplane mode to continue", Toast.LENGTH_SHORT)
+                .show()
             Handler().postDelayed(Runnable {
                 val intent = Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS)
                 startActivity(intent)
-            }, 2500)
+            }, 3000)
             startActivity(intent)
+        } else if (!isOnline()) {
+            Toast.makeText(this, "Please make sure your device is connected ot the internet", Toast.LENGTH_LONG).show()
         } else {
             // setting up receiver
             val receiver = IntentListener()

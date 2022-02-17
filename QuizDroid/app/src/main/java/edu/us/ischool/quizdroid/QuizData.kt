@@ -14,7 +14,7 @@ class QuizData : TopicRepository {
     }
 
     private fun fetchJSONData() {
-        val file = File("/sdcard/" + Environment.getExternalStorageDirectory().path, "questions.json")
+        val file = File(Environment.getExternalStorageDirectory().path, "questions.json")
         val fileText = file.inputStream().readBytes().toString(Charsets.UTF_8)
 
         val data = JSONArray(fileText)
