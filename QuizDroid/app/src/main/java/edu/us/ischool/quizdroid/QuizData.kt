@@ -15,29 +15,30 @@ class QuizData : TopicRepository {
 
     private fun fetchJSONData() {
         val file = File(Environment.getExternalStorageDirectory().path, "questions.json")
-        val fileText = file.inputStream().readBytes().toString(Charsets.UTF_8)
+        if (file.exists()) {
+            val fileText = file.inputStream().readBytes().toString(Charsets.UTF_8)
 
-        val data = JSONArray(fileText)
-        for (i in 0..(data.length() - 1)){
-            val topicObj = data.getJSONObject(i)
-            val questionListObj = topicObj.getJSONArray("questions")
-            val questionList = arrayListOf<Quiz>()
-            for (j in 0..(questionListObj.length() - 1)) {
-                val quizObj = questionListObj.getJSONObject(j)
-                val choicesObj = quizObj.getJSONArray("answers")
-                val choices = arrayListOf<String>()
-                for (k in 0..3) {
-                    choices.add(choicesObj[k].toString())
+            val data = JSONArray(fileText)
+            for (i in 0..(data.length() - 1)){
+                val topicObj = data.getJSONObject(i)
+                val questionListObj = topicObj.getJSONArray("questions")
+                val questionList = arrayListOf<Quiz>()
+                for (j in 0..(questionListObj.length() - 1)) {
+                    val quizObj = questionListObj.getJSONObject(j)
+                    val choicesObj = quizObj.getJSONArray("answers")
+                    val choices = arrayListOf<String>()
+                    for (k in 0..3) {
+                        choices.add(choicesObj[k].toString())
+                    }
+                    questionList.add(Quiz(quizObj.getString("text"), choices, (quizObj.getInt("answer") - 1)))
                 }
-                questionList.add(Quiz(quizObj.getString("text"), choices, (quizObj.getInt("answer") - 1)))
+                topicList.add(Topic(
+                    topicObj.getString("title"),
+                    topicObj.getString("desc"),
+                    questionList
+                ))
             }
-            topicList.add(Topic(
-                topicObj.getString("title"),
-                topicObj.getString("desc"),
-                questionList
-            ))
         }
-
     }
 
     // getter methods
